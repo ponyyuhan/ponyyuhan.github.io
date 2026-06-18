@@ -38,58 +38,55 @@ navbar_title: Travel
           <div class="text-muted small">Moments from places I have visited.</div>
         </div>
       </div>
-
-      {% assign travel_photos = site.static_files | where_exp: "file", "file.path contains '/assets/images/travel/'" %}
-      {% if travel_photos.size > 0 %}
-      <div id="travel-gallery" class="travel-grid">
-        {% for photo in travel_photos %}
-          {% assign lower_path = photo.path | downcase %}
-          {% if lower_path contains '.jpg' or lower_path contains '.jpeg' or lower_path contains '.png' or lower_path contains '.webp' or lower_path contains '.gif' %}
-          <a class="travel-card" href="{{ photo.path | relative_url }}" target="_blank" rel="noopener">
-            <img src="{{ photo.path | relative_url }}" alt="Travel photo" loading="lazy">
-            <div class="travel-caption" data-filename="{{ photo.name | escape }}">Travel Moment</div>
-          </a>
-          {% endif %}
-        {% endfor %}
-      </div>
-      {% else %}
-      <div class="travel-empty">No travel photos found yet. Add images to assets/images/travel/ and refresh this page.</div>
-      {% endif %}
+      <div id="travel-gallery" class="travel-grid"></div>
+      <div id="travel-empty" class="travel-empty">Loading travel photos...</div>
     </div>
   </section>
 </div>
 
 <script>
 (function () {
-  const captionRules = [
-    { keys: ["aurora", "abisko", "jiguang"], title: "Aurora in Abisko" },
-    { keys: ["austria", "austrian", "hallstatt", "salzkammergut"], title: "Austrian Lake District" },
-    { keys: ["grass", "omuro", "oomuro"], title: "Mount Omuro in Japan" },
-    { keys: ["spian", "spain", "gran", "canaria", "canary"], title: "Gran Canaria" },
-    { keys: ["tokyo", "shibuya"], title: "Shibuya Crossing in Tokyo" }
+  const base = "{{ '/assets/images/travel/' | relative_url }}";
+  const photos = [
+    { file: "aurora.jpg", title: "Aurora in Abisko" },
+    { file: "austria.jpg", title: "Austrian Lake District" },
+    { file: "grass.jpg", title: "Mount Omuro in Japan" },
+    { file: "GuangZhou.jpg", title: "Guangzhou" },
+    { file: "HangZhou.jpeg", title: "Hangzhou" },
+    { file: "HongKong.jpeg", title: "Hong Kong" },
+    { file: "iceland.jpg", title: "Iceland" },
+    { file: "Netherlands.jpg", title: "The Netherlands" },
+    { file: "norway.jpg", title: "Norway" },
+    { file: "spain.jpg", title: "Gran Canaria" },
+    { file: "Switzerland.jpg", title: "Switzerland" },
+    { file: "tokyo.jpg", title: "Shibuya Crossing in Tokyo" },
+    { file: "XinJiang.jpg", title: "Xinjiang" }
   ];
 
-  function neatTitle(name) {
-    return name
-      .replace(/\.[^.]+$/, "")
-      .replace(/^img[_-]?\d*/i, "")
-      .replace(/^dsc[_-]?\d*/i, "")
-      .replace(/\d{4}[-_]?\d{2}[-_]?\d{2}/g, "")
-      .replace(/[-_]+/g, " ")
-      .split(" ")
-      .filter(Boolean)
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ") || "Travel Moment";
-  }
+  const gallery = document.getElementById("travel-gallery");
+  const empty = document.getElementById("travel-empty");
+  empty.style.display = "none";
 
-  function titleFromName(name) {
-    const lower = name.toLowerCase();
-    const matched = captionRules.find(rule => rule.keys.some(key => lower.includes(key)));
-    return matched ? matched.title : neatTitle(name);
-  }
+  photos.forEach(photo => {
+    const url = base + photo.file;
+    const link = document.createElement("a");
+    link.className = "travel-card";
+    link.href = url;
+    link.target = "_blank";
+    link.rel = "noopener";
 
-  document.querySelectorAll(".travel-caption[data-filename]").forEach(caption => {
-    caption.textContent = titleFromName(caption.dataset.filename || "");
+    const img = document.createElement("img");
+    img.src = url;
+    img.alt = photo.title;
+    img.loading = "lazy";
+
+    const caption = document.createElement("div");
+    caption.className = "travel-caption";
+    caption.textContent = photo.title;
+
+    link.appendChild(img);
+    link.appendChild(caption);
+    gallery.appendChild(link);
   });
 })();
 </script>
