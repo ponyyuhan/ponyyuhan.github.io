@@ -14,7 +14,7 @@ $(function () {
                 element.css('background-image', 'none');
                 element.css('min-height', '0');
             } else if (element.is('div')) {
-                // set the style to background-size: cover; 
+                // set the style to background-size: cover;
                 element.css('background-size', 'cover');
                 element.css('background-position', 'center');
             }
@@ -23,6 +23,13 @@ $(function () {
 
     $('img.lazy, div.lazy:not(.always-load)').Lazy({visibleOnly: true, ...lazyLoadOptions});
     $('div.lazy.always-load').Lazy({visibleOnly: false, ...lazyLoadOptions});
+
+    $('img.lazy[data-src*="/assets/images/poster/"]').css('cursor', 'zoom-in').on('click', function () {
+        var src = $(this).attr('data-src');
+        if (src) {
+            window.open(src, '_blank');
+        }
+    });
 
     $('[data-toggle="tooltip"]').tooltip()
 
