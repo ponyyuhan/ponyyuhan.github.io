@@ -19,7 +19,8 @@ portrait_caption: >-
 short_bio_text_justify: false
 short_bio: >-
   <p>
-    I am an Industrial PhD Researcher jointly affiliated with Technische Universität Berlin and Huawei Munich Research Center.
+    I am an Industrial PhD Researcher jointly affiliated with Technische Universität Berlin and Huawei Munich Research Center,
+    advised by Prof. Stefan Schmid at TU Berlin and Dr. Yong Li at Huawei.
     My research focuses on <strong>AI security</strong>, <strong>privacy-preserving machine learning</strong>, and
     <strong>applied cryptography</strong>, with a particular interest in secure LLM inference, private retrieval-augmented generation,
     and runtime security for tool-using LLM agents.
