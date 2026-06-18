@@ -12,6 +12,10 @@ github: ponyyuhan
 # linkedin: your-linkedin-id
 # orcid: 0000-0000-0000-0000
 
+portrait_url: https://avatars.githubusercontent.com/u/89634392?v=4
+portrait_caption: >-
+  Yuhan Ma
+
 short_bio_text_justify: false
 short_bio: >-
   <p>
@@ -23,7 +27,7 @@ short_bio: >-
   <p>
     Before my Ph.D., I received an M.Sc. in Security and Mobile Computing from KTH Royal Institute of Technology and a B.Eng.
     in Information Engineering from Southeast University. I also worked on OpenHarmony security, static analysis, and code obfuscation
-    at Huawei 2012 Labs.
+    at Huawei 2012 Labs, and completed my master thesis at Ericsson Stockholm.
   </p>
 
 education:
@@ -54,6 +58,11 @@ experience:
   dept: 2012 Labs
   position: Cybersecurity and Privacy Engineer
   date: Sep. 2023 - Jul. 2024
+- name: Ericsson Stockholm
+  logo: /assets/images/badges/ericsson.svg
+  dept: Master Thesis Project
+  position: Master Thesis Student
+  date: Jan. 2023 - Jun. 2023
 
 awards:
 - name: Outstanding PhD Student, Huawei Munich Research Center
