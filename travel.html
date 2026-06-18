@@ -38,25 +38,35 @@ navbar_title: Travel
           <div class="text-muted small">Moments from places I have visited.</div>
         </div>
       </div>
-      <div id="travel-gallery" class="travel-grid"></div>
-      <div id="travel-empty" class="travel-empty">Loading travel photos...</div>
+
+      {% assign travel_photos = site.static_files | where_exp: "file", "file.path contains '/assets/images/travel/'" %}
+      {% if travel_photos.size > 0 %}
+      <div id="travel-gallery" class="travel-grid">
+        {% for photo in travel_photos %}
+          {% assign lower_path = photo.path | downcase %}
+          {% if lower_path contains '.jpg' or lower_path contains '.jpeg' or lower_path contains '.png' or lower_path contains '.webp' or lower_path contains '.gif' %}
+          <a class="travel-card" href="{{ photo.path | relative_url }}" target="_blank" rel="noopener">
+            <img src="{{ photo.path | relative_url }}" alt="Travel photo" loading="lazy">
+            <div class="travel-caption" data-filename="{{ photo.name | escape }}">Travel Moment</div>
+          </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="travel-empty">No travel photos found yet. Add images to assets/images/travel/ and refresh this page.</div>
+      {% endif %}
     </div>
   </section>
 </div>
 
 <script>
 (function () {
-  const api = "https://api.github.com/repos/ponyyuhan/ponyyuhan.github.io/contents/assets/images/travel?ref=main";
-  const gallery = document.getElementById("travel-gallery");
-  const empty = document.getElementById("travel-empty");
-  const exts = /\.(jpg|jpeg|png|webp|gif)$/i;
-
   const captionRules = [
-    { keys: ["aurora", "abisko", "jiguang", "极光"], title: "Aurora in Abisko" },
+    { keys: ["aurora", "abisko", "jiguang"], title: "Aurora in Abisko" },
     { keys: ["austria", "austrian", "hallstatt", "salzkammergut"], title: "Austrian Lake District" },
-    { keys: ["grass", "omuro", "oomuro", "大室山"], title: "Mount Omuro in Japan" },
+    { keys: ["grass", "omuro", "oomuro"], title: "Mount Omuro in Japan" },
     { keys: ["spian", "spain", "gran", "canaria", "canary"], title: "Gran Canaria" },
-    { keys: ["tokyo", "shibuya", "涩谷"], title: "Shibuya Crossing in Tokyo" }
+    { keys: ["tokyo", "shibuya"], title: "Shibuya Crossing in Tokyo" }
   ];
 
   function neatTitle(name) {
@@ -74,34 +84,12 @@ navbar_title: Travel
 
   function titleFromName(name) {
     const lower = name.toLowerCase();
-    const matched = captionRules.find(rule => rule.keys.some(key => lower.includes(key.toLowerCase())));
+    const matched = captionRules.find(rule => rule.keys.some(key => lower.includes(key)));
     return matched ? matched.title : neatTitle(name);
   }
 
-  fetch(api)
-    .then(response => response.ok ? response.json() : Promise.reject(response.status))
-    .then(files => {
-      const photos = files.filter(file => file.type === "file" && exts.test(file.name)).sort((a, b) => a.name.localeCompare(b.name));
-      if (!photos.length) { empty.textContent = "No travel photos found yet. Add images to assets/images/travel/ and refresh this page."; return; }
-      empty.style.display = "none";
-      photos.forEach(file => {
-        const link = document.createElement("a");
-        link.className = "travel-card";
-        link.href = file.download_url;
-        link.target = "_blank";
-        link.rel = "noopener";
-        const img = document.createElement("img");
-        img.src = file.download_url;
-        img.alt = titleFromName(file.name);
-        img.loading = "lazy";
-        const caption = document.createElement("div");
-        caption.className = "travel-caption";
-        caption.textContent = titleFromName(file.name);
-        link.appendChild(img);
-        link.appendChild(caption);
-        gallery.appendChild(link);
-      });
-    })
-    .catch(() => { empty.textContent = "Travel photos could not be loaded. Please check that assets/images/travel/ exists in the repository."; });
+  document.querySelectorAll(".travel-caption[data-filename]").forEach(caption => {
+    caption.textContent = titleFromName(caption.dataset.filename || "");
+  });
 })();
 </script>
