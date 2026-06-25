@@ -14,6 +14,8 @@ authors:
   - Yong Li
   - Stefan Schmid
 links:
+  OpenReview: https://openreview.net/forum?id=WpUpj8DrVB
+  Project: https://github.com/ponyyuhan/FuseFSS
   arXiv: https://arxiv.org/abs/2606.09551
   PDF: https://arxiv.org/pdf/2606.09551
 ---
