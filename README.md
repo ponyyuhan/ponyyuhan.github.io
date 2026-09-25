@@ -2,14 +2,14 @@
 
 Industrial PhD Researcher at Technische Universität Berlin and Huawei Munich Research Center.
 
-My research focuses on AI safety and security, privacy-preserving machine learning, applied cryptography, and secure systems for large language models.
+I work on LLM agent security and privacy-preserving machine learning.
 
 Selected topics:
 
-- Secure LLM inference with function secret sharing
-- Private retrieval-augmented generation
+- Safe tool use and authorization for LLM agents
 - Runtime protection for tool-using LLM agents
-- Applied cryptography and systems security
+- Secure LLM inference
+- Private retrieval-augmented generation
 
 Academic homepage: https://ponyyuhan.github.io/
 

@@ -10,7 +10,7 @@ markdown: kramdown
 plugins:
   - jekyll-email-protect
 
-# timezone: Europe/Berlin
+timezone: Europe/Berlin
 
 collections:
   - publications
