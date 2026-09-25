@@ -11,8 +11,7 @@
                 {% for item in year.items %}
                 <div class="my-1 d-flex">
                     <div>{{ item.title }}</div>
-                    {% assign date_format = item.date_format | default: "%b %d" %}
-                    <div class="ml-auto mt-auto text-muted no-break"><i>{{ item.date | date: date_format }}</i></div>
+                    <div class="ml-auto mt-auto text-muted no-break"><i>{{ item.date | date: "%b %d" }}</i></div>
                 </div>
                 {% endfor %}
             </div>
