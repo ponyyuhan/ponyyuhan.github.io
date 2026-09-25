@@ -48,6 +48,7 @@ navbar_title: Travel
 (function () {
   const base = "{{ '/assets/images/travel/' | relative_url }}";
   const photos = [
+    { file: "faroe-islands-waterfall.jpeg", title: "Faroe Islands", position: "right center" },
     { file: "aurora.jpg", title: "Aurora in Abisko" },
     { file: "austria.jpg", title: "Austrian Lake District" },
     { file: "grass.jpg", title: "Mount Omuro in Japan" },
@@ -79,6 +80,7 @@ navbar_title: Travel
     img.src = url;
     img.alt = photo.title;
     img.loading = "lazy";
+    if (photo.position) img.style.objectPosition = photo.position;
 
     const caption = document.createElement("div");
     caption.className = "travel-caption";
