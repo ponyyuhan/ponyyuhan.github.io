@@ -68,3 +68,9 @@ awards:
   date: 2024 - 2028
 - name: Undergraduate Overseas Joint Training Scholarship, Southeast University
   date: 2021
+
+service:
+- name: Reviewer, ICLR
+  date: "2027"
+- name: Reviewer, ECML PKDD
+  date: "2026"
