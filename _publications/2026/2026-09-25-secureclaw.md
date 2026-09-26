@@ -12,6 +12,7 @@ authors:
   - Yuhan Ma
   - Stefan Schmid
 links:
+  Project: https://github.com/ponyyuhan/SecureClaw_repo
   arXiv: https://arxiv.org/abs/2606.09549
   PDF: https://arxiv.org/pdf/2606.09549
 ---
