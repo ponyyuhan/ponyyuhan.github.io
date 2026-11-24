@@ -1,6 +1,6 @@
 # Yuhan Ma
 
-Industrial PhD Researcher at Technische Universität Berlin and Huawei Munich Research Center.
+PhD researcher at Technische Universität Berlin.
 
 I work on LLM agent security and privacy-preserving machine learning.
 

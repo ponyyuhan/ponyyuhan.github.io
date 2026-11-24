@@ -8,7 +8,6 @@ pub_last:       ' <span class="badge badge-pill badge-publication badge-success"
 abstract: >-
   A function-secret-sharing based framework for efficient two-server secure LLM inference, targeting fixed-point comparisons,
   interval lookup, low-degree polynomial evaluation, and predicate-dependent computation.
-cover:          /assets/images/poster/poster_review_thumb.jpg
 authors:
   - Yuhan Ma
   - Yong Li
